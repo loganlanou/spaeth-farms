@@ -9,25 +9,25 @@ export const metadata: Metadata = {
 
 const featuredCattle = [
   {
+    name: 'Churchill Jack Frost 458M ET',
+    type: 'Herd Sire',
+    description: 'Purchased in January 2025 for $41,000 at the Churchill Cattle Co. Bull Sale. Sired by Churchill W4 Sherman 2157K ET. Acquired in partnership to bring elite Churchill genetics to our program.',
+    achievement: '$41,000 Purchase - Churchill Cattle Co. Sale 2025',
+    image: '/spaeth-farms/images/hereford-bull-1.jpg',
+  },
+  {
     name: 'TBC Ember 200ET',
     type: 'Show Heifer',
     description: 'Grand Champion at the Minnesota State Fair (September 2023). Shown by Sydney Spaeth, Ember exemplifies our commitment to breeding structurally correct, competitive show cattle.',
     achievement: 'Grand Champion - Minnesota State Fair 2023',
-    image: '/spaeth-farms/images/sydney-show-heifer-1.jpg',
+    image: '/spaeth-farms/images/hereford-show-2.jpg',
   },
   {
-    name: 'T/R 4064B Diana 21L ET',
-    type: 'Show Heifer',
-    description: 'Reserve Division Champion at the Wisconsin Junior Hereford Association Jackpot Show (June 2024). Diana represents the quality genetics and maternal excellence of our breeding program.',
-    achievement: 'Reserve Division Champion - WI Jr. Hereford Jackpot 2024',
-    image: '/spaeth-farms/images/sydney-show-heifer-2.jpg',
-  },
-  {
-    name: 'Lowen Genesis G16 ET',
-    type: 'Herd Sire Bloodline',
-    description: 'Our top-selling pregnancy lot featuring Lowen Genesis G16 ET genetics crossed with H FHF Rita 8444 ET sold for $4,750 to HC Herefords of Beloit, WI at the Wisconsin Hereford Association Sale.',
+    name: 'Lowen Genesis G16 ET x H FHF Rita 8444 ET',
+    type: 'Breeding Program',
+    description: 'Our top-selling pregnancy lot at the Wisconsin Hereford Association Sale sold for $4,750 to HC Herefords of Beloit, WI. This cross demonstrates the quality genetics our program produces.',
     achievement: 'Top Selling Pregnancy Lot - WHA Sale',
-    image: '/spaeth-farms/images/spaeth-cattle.jpg',
+    image: '/spaeth-farms/images/hereford-show-3.jpg',
   },
 ];
 
@@ -77,7 +77,7 @@ export default function GeneticsPage() {
       <section className="relative bg-foreground text-white py-20">
         <div className="absolute inset-0 overflow-hidden">
           <Image
-            src="/spaeth-farms/images/spaeth-family-cattle.jpg"
+            src="/spaeth-farms/images/hereford-herd-2.jpg"
             alt="Spaeth Farms Hereford cattle"
             fill
             className="object-cover opacity-30"
@@ -139,7 +139,7 @@ export default function GeneticsPage() {
             </div>
             <div className="relative h-96 rounded-lg overflow-hidden shadow-lg">
               <Image
-                src="/spaeth-farms/images/spaeth-farm-history.jpg"
+                src="/spaeth-farms/images/hereford-show-1.jpg"
                 alt="Spaeth Farms Hereford herd"
                 fill
                 className="object-cover"
