@@ -32,9 +32,9 @@ export default function Header() {
             <Image
               src="/spaeth-farms/images/logo.png"
               alt="Spaeth Farms"
-              width={180}
-              height={90}
-              className="h-14 w-auto"
+              width={220}
+              height={110}
+              className="h-16 w-auto"
               priority
             />
           </Link>
