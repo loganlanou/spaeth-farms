@@ -59,6 +59,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/genetics" className="text-gray-300 hover:text-white transition-colors">
+                  Genetics Program
+                </Link>
+              </li>
+              <li>
                 <Link href="/about" className="text-gray-300 hover:text-white transition-colors">
                   Our Story
                 </Link>
