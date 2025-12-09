@@ -13,21 +13,21 @@ const featuredCattle = [
     type: 'Show Heifer',
     description: 'Grand Champion at the Minnesota State Fair (September 2023). Shown by Sydney Spaeth, Ember exemplifies our commitment to breeding structurally correct, competitive show cattle.',
     achievement: 'Grand Champion - Minnesota State Fair 2023',
-    image: '/spaeth-farms/images/show-heifer.jpg',
+    image: '/spaeth-farms/images/sydney-show-heifer-1.jpg',
   },
   {
     name: 'T/R 4064B Diana 21L ET',
     type: 'Show Heifer',
     description: 'Reserve Division Champion at the Wisconsin Junior Hereford Association Jackpot Show (June 2024). Diana represents the quality genetics and maternal excellence of our breeding program.',
     achievement: 'Reserve Division Champion - WI Jr. Hereford Jackpot 2024',
-    image: '/spaeth-farms/images/hereford-cow-calf.jpg',
+    image: '/spaeth-farms/images/sydney-show-heifer-2.jpg',
   },
   {
     name: 'Lowen Genesis G16 ET',
     type: 'Herd Sire Bloodline',
     description: 'Our top-selling pregnancy lot featuring Lowen Genesis G16 ET genetics crossed with H FHF Rita 8444 ET sold for $4,750 to HC Herefords of Beloit, WI at the Wisconsin Hereford Association Sale.',
     achievement: 'Top Selling Pregnancy Lot - WHA Sale',
-    image: '/spaeth-farms/images/hereford-bull.jpg',
+    image: '/spaeth-farms/images/spaeth-cattle.jpg',
   },
 ];
 
@@ -77,8 +77,8 @@ export default function GeneticsPage() {
       <section className="relative bg-foreground text-white py-20">
         <div className="absolute inset-0 overflow-hidden">
           <Image
-            src="/spaeth-farms/images/genetics-hero.jpg"
-            alt="Hereford cattle"
+            src="/spaeth-farms/images/spaeth-family-cattle.jpg"
+            alt="Spaeth Farms Hereford cattle"
             fill
             className="object-cover opacity-30"
             priority
@@ -139,7 +139,7 @@ export default function GeneticsPage() {
             </div>
             <div className="relative h-96 rounded-lg overflow-hidden shadow-lg">
               <Image
-                src="/spaeth-farms/images/hereford-herd.jpg"
+                src="/spaeth-farms/images/spaeth-farm-history.jpg"
                 alt="Spaeth Farms Hereford herd"
                 fill
                 className="object-cover"
