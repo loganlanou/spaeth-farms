@@ -11,7 +11,7 @@ export const products: Product[] = [
     price: 34.99,
     weight: '12 oz',
     category: 'steaks',
-    image: '/images/ribeye.jpg',
+    image: '/spaeth-farms/images/ribeye.jpg',
     inStock: true,
     featured: true,
     details: [
@@ -31,7 +31,7 @@ export const products: Product[] = [
     price: 29.99,
     weight: '12 oz',
     category: 'steaks',
-    image: '/images/nystrip.jpg',
+    image: '/spaeth-farms/images/nystrip.jpg',
     inStock: true,
     featured: true,
     details: [
@@ -51,7 +51,7 @@ export const products: Product[] = [
     price: 39.99,
     weight: '8 oz',
     category: 'steaks',
-    image: '/images/filet.jpg',
+    image: '/spaeth-farms/images/filet.jpg',
     inStock: true,
     featured: true,
     details: [
@@ -71,7 +71,7 @@ export const products: Product[] = [
     price: 18.99,
     weight: '10 oz',
     category: 'steaks',
-    image: '/images/sirloin.jpg',
+    image: '/spaeth-farms/images/sirloin.jpg',
     inStock: true,
     featured: false,
     details: [
@@ -91,7 +91,7 @@ export const products: Product[] = [
     price: 36.99,
     weight: '16 oz',
     category: 'steaks',
-    image: '/images/tbone.jpg',
+    image: '/spaeth-farms/images/tbone.jpg',
     inStock: true,
     featured: false,
     details: [
@@ -113,7 +113,7 @@ export const products: Product[] = [
     price: 12.99,
     weight: 'per lb',
     category: 'roasts',
-    image: '/images/chuck-roast.jpg',
+    image: '/spaeth-farms/images/chuck-roast.jpg',
     inStock: true,
     featured: false,
     details: [
@@ -133,7 +133,7 @@ export const products: Product[] = [
     price: 24.99,
     weight: 'per lb',
     category: 'roasts',
-    image: '/images/prime-rib.jpg',
+    image: '/spaeth-farms/images/prime-rib.jpg',
     inStock: true,
     featured: true,
     details: [
@@ -153,7 +153,7 @@ export const products: Product[] = [
     price: 10.99,
     weight: 'per lb',
     category: 'roasts',
-    image: '/images/brisket.jpg',
+    image: '/spaeth-farms/images/brisket.jpg',
     inStock: true,
     featured: false,
     details: [
@@ -173,7 +173,7 @@ export const products: Product[] = [
     price: 9.99,
     weight: 'per lb',
     category: 'roasts',
-    image: '/images/rump-roast.jpg',
+    image: '/spaeth-farms/images/rump-roast.jpg',
     inStock: true,
     featured: false,
     details: [
@@ -195,7 +195,7 @@ export const products: Product[] = [
     price: 8.99,
     weight: 'per lb',
     category: 'ground',
-    image: '/images/ground-beef.jpg',
+    image: '/spaeth-farms/images/ground-beef.jpg',
     inStock: true,
     featured: false,
     details: [
@@ -215,7 +215,7 @@ export const products: Product[] = [
     price: 9.99,
     weight: 'per lb',
     category: 'ground',
-    image: '/images/ground-lean.jpg',
+    image: '/spaeth-farms/images/ground-lean.jpg',
     inStock: true,
     featured: false,
     details: [
@@ -235,7 +235,7 @@ export const products: Product[] = [
     price: 79.99,
     weight: '10 lbs',
     category: 'ground',
-    image: '/images/ground-bulk.jpg',
+    image: '/spaeth-farms/images/ground-bulk.jpg',
     inStock: true,
     featured: true,
     details: [
@@ -257,7 +257,7 @@ export const products: Product[] = [
     price: 299.99,
     weight: 'Approx. 15 lbs',
     category: 'bundles',
-    image: '/images/grill-bundle.jpg',
+    image: '/spaeth-farms/images/grill-bundle.jpg',
     inStock: true,
     featured: true,
     details: [
@@ -277,7 +277,7 @@ export const products: Product[] = [
     price: 199.99,
     weight: 'Approx. 20 lbs',
     category: 'bundles',
-    image: '/images/family-bundle.jpg',
+    image: '/spaeth-farms/images/family-bundle.jpg',
     inStock: true,
     featured: false,
     details: [
@@ -297,7 +297,7 @@ export const products: Product[] = [
     price: 899.99,
     weight: 'Approx. 100+ lbs',
     category: 'bundles',
-    image: '/images/quarter-beef.jpg',
+    image: '/spaeth-farms/images/quarter-beef.jpg',
     inStock: true,
     featured: false,
     details: [
@@ -319,7 +319,7 @@ export const products: Product[] = [
     price: 14.99,
     weight: 'per lb',
     category: 'specialty',
-    image: '/images/short-ribs.jpg',
+    image: '/spaeth-farms/images/short-ribs.jpg',
     inStock: true,
     featured: false,
     details: [
@@ -339,7 +339,7 @@ export const products: Product[] = [
     price: 11.99,
     weight: 'per lb',
     category: 'specialty',
-    image: '/images/stew-meat.jpg',
+    image: '/spaeth-farms/images/stew-meat.jpg',
     inStock: true,
     featured: false,
     details: [
@@ -359,7 +359,7 @@ export const products: Product[] = [
     price: 5.99,
     weight: 'per lb',
     category: 'specialty',
-    image: '/images/liver.jpg',
+    image: '/spaeth-farms/images/liver.jpg',
     inStock: true,
     featured: false,
     details: [
@@ -379,7 +379,7 @@ export const products: Product[] = [
     price: 4.99,
     weight: 'per lb',
     category: 'specialty',
-    image: '/images/bones.jpg',
+    image: '/spaeth-farms/images/bones.jpg',
     inStock: true,
     featured: false,
     details: [
@@ -399,7 +399,7 @@ export const products: Product[] = [
     price: 16.99,
     weight: 'per lb',
     category: 'specialty',
-    image: '/images/flank.jpg',
+    image: '/spaeth-farms/images/flank.jpg',
     inStock: true,
     featured: false,
     details: [

@@ -15,7 +15,7 @@ export default function AboutPage() {
         <div className="absolute inset-0 bg-black/50 z-10" />
         <div className="absolute inset-0">
           <Image
-            src="/images/farm-aerial.jpg"
+            src="/spaeth-farms/images/farm-aerial.jpg"
             alt="Aerial view of Spaeth Farms"
             fill
             className="object-cover"
@@ -51,7 +51,7 @@ export default function AboutPage() {
             </div>
             <div className="relative h-96 lg:h-[500px] rounded-lg overflow-hidden">
               <Image
-                src="/images/farm-family.jpg"
+                src="/spaeth-farms/images/farm-family.jpg"
                 alt="The Spaeth family on the farm"
                 fill
                 className="object-cover"
@@ -172,7 +172,7 @@ export default function AboutPage() {
             </div>
             <div className="order-1 lg:order-2 relative h-96 lg:h-[500px] rounded-lg overflow-hidden">
               <Image
-                src="/images/josh-portrait.jpg"
+                src="/spaeth-farms/images/josh-portrait.jpg"
                 alt="Josh Spaeth, owner of Spaeth Farms"
                 fill
                 className="object-cover"
