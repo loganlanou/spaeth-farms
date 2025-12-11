@@ -1,0 +1,138 @@
+{
+  "hero": {
+    "tagline": "Family-Owned Since Generations",
+    "headline": "Premium Wisconsin Beef, Delivered to Your Door",
+    "description": "From our family farm to your family table. Experience the exceptional quality of sustainably raised beef, shipped fresh nationwide.",
+    "primaryButton": {
+      "text": "Shop Our Beef",
+      "link": "/products"
+    },
+    "secondaryButton": {
+      "text": "Our Story",
+      "link": "/about"
+    },
+    "backgroundImage": "/spaeth-farms/images/hero-cattle.jpg"
+  },
+  "trustBadges": [
+    {
+      "id": "1",
+      "icon": "truck",
+      "title": "Free Shipping",
+      "subtitle": "Orders over $199"
+    },
+    {
+      "id": "2",
+      "icon": "heart",
+      "title": "Raised with Care",
+      "subtitle": "Humanely raised cattle"
+    },
+    {
+      "id": "3",
+      "icon": "shield",
+      "title": "USDA Inspected",
+      "subtitle": "Quality guaranteed"
+    },
+    {
+      "id": "4",
+      "icon": "home",
+      "title": "Family Farm",
+      "subtitle": "Wisconsin proud"
+    }
+  ],
+  "featuredSection": {
+    "title": "Customer Favorites",
+    "description": "Our most popular cuts, hand-selected for exceptional quality and flavor. Every order is vacuum-sealed and flash-frozen for peak freshness."
+  },
+  "categoriesSection": {
+    "title": "Shop by Category",
+    "description": "Find exactly what you're looking for"
+  },
+  "whyChooseUs": {
+    "title": "Why Choose Spaeth Farms?",
+    "image": "/spaeth-farms/images/farm-scene.jpg",
+    "benefits": [
+      {
+        "id": "1",
+        "icon": "sun",
+        "title": "Pasture-Raised",
+        "description": "Our cattle graze on lush Wisconsin pastures, resulting in beef with superior flavor and nutrition."
+      },
+      {
+        "id": "2",
+        "icon": "beaker",
+        "title": "No Hormones or Antibiotics",
+        "description": "We never use growth hormones or unnecessary antibiotics. Just healthy cattle, naturally raised."
+      },
+      {
+        "id": "3",
+        "icon": "gift",
+        "title": "Dry-Aged for Perfection",
+        "description": "Our steaks are dry-aged for a minimum of 21 days, developing deep, complex flavors."
+      },
+      {
+        "id": "4",
+        "icon": "location",
+        "title": "Direct from the Source",
+        "description": "Skip the middleman. Our beef goes from our farm to your door, ensuring freshness and fair pricing."
+      }
+    ]
+  },
+  "howItWorks": {
+    "title": "How It Works",
+    "description": "Getting premium beef delivered to your door has never been easier",
+    "steps": [
+      {
+        "id": "1",
+        "title": "Choose Your Cuts",
+        "description": "Browse our selection of premium steaks, roasts, ground beef, and value bundles. Select exactly what you need."
+      },
+      {
+        "id": "2",
+        "title": "We Pack & Ship",
+        "description": "Your order is vacuum-sealed, packed in insulated boxes with dry ice, and shipped directly to your door via expedited delivery."
+      },
+      {
+        "id": "3",
+        "title": "Enjoy Quality Beef",
+        "description": "Receive your order frozen and ready to store. Thaw and cook whenever you're ready for an exceptional meal."
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "What Our Customers Say",
+    "items": [
+      {
+        "id": "1",
+        "rating": 5,
+        "text": "The ribeyes from Spaeth Farms are hands-down the best steaks I've ever cooked at home. The marbling is incredible and the flavor is unmatched.",
+        "author": "Michael R.",
+        "location": "Chicago, IL"
+      },
+      {
+        "id": "2",
+        "rating": 5,
+        "text": "We ordered the Family Essentials Bundle and it fed our family of five for over a month. Great variety and amazing quality at a fair price.",
+        "author": "Sarah & Tom K.",
+        "location": "Minneapolis, MN"
+      },
+      {
+        "id": "3",
+        "rating": 5,
+        "text": "Shipping was fast and everything arrived frozen solid. You can really taste the difference when beef is raised right. We're customers for life!",
+        "author": "David L.",
+        "location": "Denver, CO"
+      }
+    ]
+  },
+  "ctaSection": {
+    "title": "Ready to Taste the Difference?",
+    "description": "Join thousands of families who have discovered the exceptional quality of Spaeth Farms beef. Free shipping on orders over $199.",
+    "buttonText": "Shop Now",
+    "buttonLink": "/products"
+  },
+  "contactBanner": {
+    "title": "Have Questions?",
+    "subtitle": "We're here to help. Reach out anytime.",
+    "phone": "(715) 313-0075"
+  }
+}
