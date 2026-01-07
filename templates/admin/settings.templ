@@ -1,0 +1,93 @@
+package admin
+
+import (
+	"spaeth-farms/internal/meta"
+	"spaeth-farms/templates/layouts"
+)
+
+templ Settings(settings map[string]string) {
+	@layouts.Admin(meta.New("Settings", "Site settings").WithNoIndex()) {
+		<div class="max-w-2xl mx-auto space-y-6">
+			<h1 class="text-3xl font-bold text-stone-900">Site Settings</h1>
+
+			<form method="POST" action="/admin/settings" class="bg-white rounded-lg shadow p-6 space-y-6">
+				<div>
+					<label for="site_name" class="block text-sm font-medium text-stone-700">Site Name</label>
+					<input
+						type="text"
+						id="site_name"
+						name="site_name"
+						value={ getSettingValue(settings, "site_name", "Spaeth Farms") }
+						class="mt-1 block w-full rounded-md border-stone-300 shadow-sm focus:border-green-500 focus:ring-green-500"
+					/>
+				</div>
+
+				<div>
+					<label for="phone" class="block text-sm font-medium text-stone-700">Phone Number</label>
+					<input
+						type="text"
+						id="phone"
+						name="phone"
+						value={ getSettingValue(settings, "phone", "(715) 313-0075") }
+						class="mt-1 block w-full rounded-md border-stone-300 shadow-sm focus:border-green-500 focus:ring-green-500"
+					/>
+				</div>
+
+				<div>
+					<label for="email" class="block text-sm font-medium text-stone-700">Email Address</label>
+					<input
+						type="email"
+						id="email"
+						name="email"
+						value={ getSettingValue(settings, "email", "info@spaethfarms.com") }
+						class="mt-1 block w-full rounded-md border-stone-300 shadow-sm focus:border-green-500 focus:ring-green-500"
+					/>
+				</div>
+
+				<div>
+					<label for="address" class="block text-sm font-medium text-stone-700">Address</label>
+					<textarea
+						id="address"
+						name="address"
+						rows="2"
+						class="mt-1 block w-full rounded-md border-stone-300 shadow-sm focus:border-green-500 focus:ring-green-500"
+					>{ getSettingValue(settings, "address", "2515 250th Street, Cadott, WI 54727") }</textarea>
+				</div>
+
+				<div>
+					<label for="contact_notify_email" class="block text-sm font-medium text-stone-700">Contact Form Notification Email</label>
+					<input
+						type="email"
+						id="contact_notify_email"
+						name="contact_notify_email"
+						value={ getSettingValue(settings, "contact_notify_email", "") }
+						placeholder="Email to receive contact form submissions"
+						class="mt-1 block w-full rounded-md border-stone-300 shadow-sm focus:border-green-500 focus:ring-green-500"
+					/>
+				</div>
+
+				<div>
+					<label for="free_shipping_threshold" class="block text-sm font-medium text-stone-700">Free Shipping Threshold ($)</label>
+					<input
+						type="number"
+						id="free_shipping_threshold"
+						name="free_shipping_threshold"
+						value={ getSettingValue(settings, "free_shipping_threshold", "199") }
+						class="mt-1 block w-full rounded-md border-stone-300 shadow-sm focus:border-green-500 focus:ring-green-500"
+					/>
+				</div>
+
+				<div class="flex justify-end">
+					<button type="submit" class="px-4 py-2 bg-green-800 text-white rounded-lg hover:bg-green-700">Save Settings</button>
+				</div>
+			</form>
+		</div>
+	}
+}
+
+func getSettingValue(settings map[string]string, key string, defaultValue string) string {
+	if val, ok := settings[key]; ok && val != "" {
+		return val
+	}
+	return defaultValue
+}

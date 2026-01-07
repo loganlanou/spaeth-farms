@@ -1,0 +1,97 @@
+package admin
+
+import (
+	"database/sql"
+	"fmt"
+	"spaeth-farms/internal/database/sqlc"
+	"spaeth-farms/internal/meta"
+	"spaeth-farms/templates/layouts"
+)
+
+templ Orders(orders []sqlc.Order) {
+	@layouts.Admin(meta.New("Orders", "Manage orders").WithNoIndex()) {
+		<div class="space-y-6">
+			<h1 class="text-3xl font-bold text-stone-900">Orders</h1>
+
+			<div class="bg-white rounded-lg shadow overflow-hidden">
+				<table class="min-w-full divide-y divide-stone-200">
+					<thead class="bg-stone-50">
+						<tr>
+							<th class="px-6 py-3 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">Order ID</th>
+							<th class="px-6 py-3 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">Customer</th>
+							<th class="px-6 py-3 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">Date</th>
+							<th class="px-6 py-3 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">Total</th>
+							<th class="px-6 py-3 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">Status</th>
+						</tr>
+					</thead>
+					<tbody class="bg-white divide-y divide-stone-200">
+						if len(orders) == 0 {
+							<tr>
+								<td colspan="5" class="px-6 py-8 text-center text-stone-500">No orders yet</td>
+							</tr>
+						} else {
+							for _, order := range orders {
+								<tr>
+									<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-stone-900">
+										#{ fmt.Sprintf("%d", order.ID) }
+									</td>
+									<td class="px-6 py-4 whitespace-nowrap">
+										<div class="text-sm text-stone-900">
+											if order.CustomerName.Valid {
+												{ order.CustomerName.String }
+											}
+										</div>
+										<div class="text-sm text-stone-500">{ order.CustomerEmail }</div>
+									</td>
+									<td class="px-6 py-4 whitespace-nowrap text-sm text-stone-500">
+										{ ordersFormatTime(order.CreatedAt) }
+									</td>
+									<td class="px-6 py-4 whitespace-nowrap text-sm text-stone-900">
+										{ fmt.Sprintf("$%.2f", float64(order.TotalCents)/100) }
+									</td>
+									<td class="px-6 py-4 whitespace-nowrap">
+										<span class={ "px-2 py-1 text-xs rounded-full", orderStatusColor(order.Status) }>
+											{ ordersNullStringOr(order.Status, "pending") }
+										</span>
+									</td>
+								</tr>
+							}
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	}
+}
+
+func orderStatusColor(status sql.NullString) string {
+	if !status.Valid {
+		return "bg-stone-100 text-stone-600"
+	}
+	switch status.String {
+	case "completed":
+		return "bg-green-100 text-green-600"
+	case "pending":
+		return "bg-amber-100 text-amber-600"
+	case "cancelled":
+		return "bg-red-100 text-red-600"
+	case "shipped":
+		return "bg-blue-100 text-blue-600"
+	default:
+		return "bg-stone-100 text-stone-600"
+	}
+}
+
+func ordersNullStringOr(s sql.NullString, def string) string {
+	if s.Valid {
+		return s.String
+	}
+	return def
+}
+
+func ordersFormatTime(t sql.NullTime) string {
+	if t.Valid {
+		return t.Time.Format("Jan 2, 2006")
+	}
+	return ""
+}

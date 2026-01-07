@@ -1,0 +1,88 @@
+package admin
+
+import (
+	"fmt"
+	"spaeth-farms/internal/database/sqlc"
+	"spaeth-farms/internal/meta"
+	"spaeth-farms/templates/layouts"
+)
+
+templ Products(products []sqlc.Product, categories []sqlc.Category) {
+	@layouts.Admin(meta.New("Products", "Manage products").WithNoIndex()) {
+		<div class="space-y-6">
+			<div class="flex justify-between items-center">
+				<h1 class="text-3xl font-bold text-stone-900">Products</h1>
+				<a href="/admin/products/new" class="px-4 py-2 bg-green-800 text-white rounded-lg hover:bg-green-700 transition-colors">
+					Add Product
+				</a>
+			</div>
+
+			<div class="bg-white rounded-lg shadow overflow-hidden">
+				<table class="min-w-full divide-y divide-stone-200">
+					<thead class="bg-stone-50">
+						<tr>
+							<th class="px-6 py-3 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">Product</th>
+							<th class="px-6 py-3 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">Category</th>
+							<th class="px-6 py-3 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">Price</th>
+							<th class="px-6 py-3 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">Status</th>
+							<th class="px-6 py-3 text-right text-xs font-medium text-stone-500 uppercase tracking-wider">Actions</th>
+						</tr>
+					</thead>
+					<tbody class="bg-white divide-y divide-stone-200">
+						for _, product := range products {
+							<tr>
+								<td class="px-6 py-4 whitespace-nowrap">
+									<div class="flex items-center">
+										if product.Image.Valid {
+											<img src={ fmt.Sprintf("/static%s", product.Image.String) } alt={ product.Name } class="w-10 h-10 rounded object-cover"/>
+										} else {
+											<div class="w-10 h-10 rounded bg-stone-200"></div>
+										}
+										<div class="ml-4">
+											<div class="text-sm font-medium text-stone-900">{ product.Name }</div>
+											<div class="text-sm text-stone-500">{ product.Slug }</div>
+										</div>
+									</div>
+								</td>
+								<td class="px-6 py-4 whitespace-nowrap text-sm text-stone-500">
+									if product.CategoryID.Valid {
+										{ productsGetCategoryName(categories, product.CategoryID.String) }
+									}
+								</td>
+								<td class="px-6 py-4 whitespace-nowrap text-sm text-stone-900">
+									{ fmt.Sprintf("$%.2f", float64(product.PriceCents)/100) }
+								</td>
+								<td class="px-6 py-4 whitespace-nowrap">
+									if product.InStock.Valid && product.InStock.Int64 == 1 {
+										<span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-600">In Stock</span>
+									} else {
+										<span class="px-2 py-1 text-xs rounded-full bg-red-100 text-red-600">Out of Stock</span>
+									}
+								</td>
+								<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+									<a href={ templ.SafeURL(fmt.Sprintf("/admin/products/%s", product.Slug)) } class="text-green-600 hover:text-green-700 mr-4">Edit</a>
+									<button
+										hx-delete={ fmt.Sprintf("/admin/products/%d", product.ID) }
+										hx-confirm="Are you sure you want to delete this product?"
+										hx-target="closest tr"
+										hx-swap="outerHTML"
+										class="text-red-600 hover:text-red-700"
+									>Delete</button>
+								</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	}
+}
+
+func productsGetCategoryName(categories []sqlc.Category, categoryID string) string {
+	for _, c := range categories {
+		if c.ID == categoryID {
+			return c.Name
+		}
+	}
+	return ""
+}
