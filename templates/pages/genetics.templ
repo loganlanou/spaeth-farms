@@ -1,0 +1,312 @@
+package pages
+
+import (
+	"spaeth-farms/internal/meta"
+	"spaeth-farms/templates/layouts"
+)
+
+type FeaturedCattle struct {
+	Name        string
+	Type        string
+	Description string
+	Achievement string
+	Image       string
+}
+
+type BreedingTech struct {
+	Name        string
+	Description string
+}
+
+func getFeaturedCattle() []FeaturedCattle {
+	return []FeaturedCattle{
+		{
+			Name:        "Churchill Jack Frost 458M ET",
+			Type:        "Herd Sire",
+			Description: "Purchased in January 2025 for $41,000 at the Churchill Cattle Co. Bull Sale. Sired by Churchill W4 Sherman 2157K ET. Acquired in partnership to bring elite Churchill genetics to our program.",
+			Achievement: "$41,000 Purchase - Churchill Cattle Co. Sale 2025",
+			Image:       "/images/hereford-bull-1.jpg",
+		},
+		{
+			Name:        "TBC Ember 200ET",
+			Type:        "Show Heifer",
+			Description: "Grand Champion at the Minnesota State Fair (September 2023). Shown by Sydney Spaeth, Ember exemplifies our commitment to breeding structurally correct, competitive show cattle.",
+			Achievement: "Grand Champion - Minnesota State Fair 2023",
+			Image:       "/images/hereford-show-2.jpg",
+		},
+		{
+			Name:        "Lowen Genesis G16 ET x H FHF Rita 8444 ET",
+			Type:        "Breeding Program",
+			Description: "Our top-selling pregnancy lot at the Wisconsin Hereford Association Sale sold for $4,750 to HC Herefords of Beloit, WI. This cross demonstrates the quality genetics our program produces.",
+			Achievement: "Top Selling Pregnancy Lot - WHA Sale",
+			Image:       "/images/hereford-show-3.jpg",
+		},
+	}
+}
+
+func getBreedingTechs() []BreedingTech {
+	return []BreedingTech{
+		{
+			Name:        "Artificial Insemination (AI)",
+			Description: "Access to elite genetics from top Hereford sires nationwide, allowing us to incorporate the best bloodlines into our herd.",
+		},
+		{
+			Name:        "Embryo Transfer (ET)",
+			Description: "Multiply the genetic impact of our top females by producing multiple offspring from elite donor cows each year.",
+		},
+		{
+			Name:        "In Vitro Fertilization (IVF)",
+			Description: "Advanced reproductive technology enabling us to produce embryos from our best genetics with precise mating combinations.",
+		},
+		{
+			Name:        "Genomic DNA Testing",
+			Description: "Comprehensive genetic evaluation to identify superior animals and make data-driven breeding decisions for continuous herd improvement.",
+		},
+	}
+}
+
+templ Genetics(phone string) {
+	@layouts.Base(meta.New("Genetics & Breeding Program", "Explore our registered Polled Hereford genetics program. Award-winning cattle, advanced breeding technologies, and elite bloodlines from Spaeth Farms in Wisconsin.")) {
+		<!-- Hero Section -->
+		<section class="relative bg-stone-900 text-white py-20">
+			<div class="absolute inset-0 overflow-hidden">
+				<img
+					src="/static/images/hereford-herd-2.jpg"
+					alt="Spaeth Farms Hereford cattle"
+					class="w-full h-full object-cover opacity-30"
+				/>
+			</div>
+			<div class="max-w-7xl mx-auto px-4 relative z-10">
+				<div class="max-w-3xl">
+					<p class="text-amber-400 font-semibold mb-2">Registered Polled Herefords</p>
+					<h1 class="text-4xl md:text-5xl font-bold mb-6">Our Genetics Program</h1>
+					<p class="text-xl text-stone-300 mb-8">
+						At Spaeth Farms, we're dedicated to raising structurally correct, dependable, and productive
+						Polled Hereford cattle. Our genetics are selected for docility, maternal excellence,
+						and competitiveness in the show ring.
+					</p>
+					<div class="flex flex-wrap gap-4">
+						<a href="/contact" class="bg-green-700 text-white px-6 py-3 rounded font-semibold hover:bg-green-800 transition-colors">
+							Inquire About Genetics
+						</a>
+						<a
+							href="https://www.facebook.com/SpaethFarms"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="border-2 border-white text-white px-6 py-3 rounded font-semibold hover:bg-white hover:text-stone-900 transition-colors"
+						>
+							Follow Us on Facebook
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- Program Overview -->
+		<section class="py-16 bg-stone-50">
+			<div class="max-w-7xl mx-auto px-4">
+				<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+					<div>
+						<h2 class="text-3xl font-bold mb-6">Breeding Excellence Since Generations</h2>
+						<p class="text-stone-600 mb-4">
+							Our family has been involved in cattle farming for generations. Norbert and Anne Spaeth,
+							Don and Darlene Manley, and Buck and Eunice Crandall were all lifelong dairy farmers.
+							Today, we're proud to continue this legacy with our registered Polled Hereford program.
+						</p>
+						<p class="text-stone-600 mb-6">
+							Our cattle are expected to be docile, productive mothers, and competitive in the show ring.
+							We utilize advanced reproductive technologies to ensure our customers receive elite genetics
+							while also providing consumers with high-quality Hereford beef.
+						</p>
+						<div class="grid grid-cols-2 gap-6">
+							<div class="bg-white p-4 rounded-lg border border-stone-200">
+								<p class="text-3xl font-bold text-green-700">100%</p>
+								<p class="text-sm text-stone-600">Registered Polled Herefords</p>
+							</div>
+							<div class="bg-white p-4 rounded-lg border border-stone-200">
+								<p class="text-3xl font-bold text-green-700">5+</p>
+								<p class="text-sm text-stone-600">Generations of Farming</p>
+							</div>
+						</div>
+					</div>
+					<div class="relative h-96 rounded-lg overflow-hidden shadow-lg">
+						<img
+							src="/static/images/hereford-show-1.jpg"
+							alt="Spaeth Farms Hereford herd"
+							class="w-full h-full object-cover"
+						/>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- Featured Cattle -->
+		<section class="py-16 bg-white">
+			<div class="max-w-7xl mx-auto px-4">
+				<div class="text-center mb-12">
+					<h2 class="text-3xl font-bold mb-4">Featured Genetics</h2>
+					<p class="text-stone-600 max-w-2xl mx-auto">
+						Our cattle have earned recognition at major shows across the Midwest.
+						Here are some of our notable animals and bloodlines.
+					</p>
+				</div>
+				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+					for _, animal := range getFeaturedCattle() {
+						<div class="bg-stone-50 rounded-lg overflow-hidden border border-stone-200 shadow-sm hover:shadow-md transition-shadow">
+							<div class="relative h-64">
+								<img
+									src={ "/static" + animal.Image }
+									alt={ animal.Name }
+									class="w-full h-full object-cover"
+								/>
+								<div class="absolute top-4 left-4">
+									<span class="bg-green-700 text-white px-3 py-1 rounded-full text-sm font-medium">
+										{ animal.Type }
+									</span>
+								</div>
+							</div>
+							<div class="p-6">
+								<h3 class="text-xl font-bold mb-2">{ animal.Name }</h3>
+								<p class="text-stone-600 text-sm mb-4">{ animal.Description }</p>
+								<div class="flex items-center gap-2 text-green-700">
+									<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+										<path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 012.916.52 6.003 6.003 0 01-5.395 4.972m0 0a6.726 6.726 0 01-2.749 1.35m0 0a6.772 6.772 0 01-3.044 0"></path>
+									</svg>
+									<span class="text-sm font-medium">{ animal.Achievement }</span>
+								</div>
+							</div>
+						</div>
+					}
+				</div>
+			</div>
+		</section>
+		<!-- Show Results -->
+		<section class="py-16 bg-green-800 text-white">
+			<div class="max-w-7xl mx-auto px-4">
+				<div class="text-center mb-12">
+					<h2 class="text-3xl font-bold mb-4">Show Ring Success</h2>
+					<p class="text-stone-200 max-w-2xl mx-auto">
+						Our daughter Sydney has proudly represented Spaeth Farms in the show ring,
+						earning top honors at prestigious events.
+					</p>
+				</div>
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+					<div class="bg-white/10 backdrop-blur rounded-lg p-8">
+						<div class="flex items-center gap-4 mb-4">
+							<div class="w-16 h-16 bg-amber-400 rounded-full flex items-center justify-center">
+								<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-stone-900">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 012.916.52 6.003 6.003 0 01-5.395 4.972m0 0a6.726 6.726 0 01-2.749 1.35m0 0a6.772 6.772 0 01-3.044 0"></path>
+								</svg>
+							</div>
+							<div>
+								<p class="text-amber-400 font-semibold">Grand Champion</p>
+								<p class="text-2xl font-bold">Minnesota State Fair</p>
+							</div>
+						</div>
+						<p class="text-stone-200">
+							September 2023 - TBC Ember 200ET, shown by Sydney Spaeth, was awarded Grand Champion
+							at one of the largest state fairs in the nation.
+						</p>
+					</div>
+					<div class="bg-white/10 backdrop-blur rounded-lg p-8">
+						<div class="flex items-center gap-4 mb-4">
+							<div class="w-16 h-16 bg-amber-400 rounded-full flex items-center justify-center">
+								<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-stone-900">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"></path>
+								</svg>
+							</div>
+							<div>
+								<p class="text-amber-400 font-semibold">Reserve Division Champion</p>
+								<p class="text-2xl font-bold">WI Jr. Hereford Jackpot</p>
+							</div>
+						</div>
+						<p class="text-stone-200">
+							June 2024 - T/R 4064B Diana 21L ET, shown by Sydney Spaeth, earned Reserve Division
+							Champion at the Wisconsin Junior Hereford Association Jackpot Show.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- Breeding Technologies -->
+		<section class="py-16 bg-stone-50">
+			<div class="max-w-7xl mx-auto px-4">
+				<div class="text-center mb-12">
+					<h2 class="text-3xl font-bold mb-4">Advanced Breeding Technologies</h2>
+					<p class="text-stone-600 max-w-2xl mx-auto">
+						We utilize the latest reproductive technologies to maximize genetic progress
+						and provide our customers with elite genetics.
+					</p>
+				</div>
+				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+					for i, tech := range getBreedingTechs() {
+						@breedingTechCard(i, tech)
+					}
+				</div>
+			</div>
+		</section>
+		<!-- Wisconsin Hereford Association -->
+		<section class="py-12 bg-white border-t border-stone-200">
+			<div class="max-w-7xl mx-auto px-4">
+				<div class="flex flex-col md:flex-row items-center justify-between gap-8">
+					<div>
+						<h3 class="text-xl font-bold mb-2">Proud Member of the Wisconsin Hereford Association</h3>
+						<p class="text-stone-600">
+							We actively participate in WHA events and sales, contributing quality genetics to the Hereford community.
+						</p>
+					</div>
+					<a
+						href="https://wisconsinherefords.org/"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="border-2 border-stone-900 text-stone-900 px-6 py-3 rounded font-semibold hover:bg-stone-900 hover:text-white transition-colors whitespace-nowrap"
+					>
+						Visit WHA Website
+					</a>
+				</div>
+			</div>
+		</section>
+		<!-- Contact CTA -->
+		<section class="py-16 bg-stone-900 text-white">
+			<div class="max-w-7xl mx-auto px-4 text-center">
+				<h2 class="text-3xl font-bold mb-4">Interested in Our Genetics?</h2>
+				<p class="text-stone-300 max-w-2xl mx-auto mb-8">
+					Whether you're looking for breeding stock, show prospects, or want to learn more about our program,
+					we'd love to hear from you. Contact us to discuss available cattle or upcoming sales.
+				</p>
+				<div class="flex flex-col sm:flex-row gap-4 justify-center">
+					<a href="/contact" class="bg-green-700 text-white px-6 py-3 rounded font-semibold hover:bg-green-800 transition-colors">
+						Contact Us
+					</a>
+					<a href={ templ.SafeURL("tel:" + phone) } class="border-2 border-white text-white px-6 py-3 rounded font-semibold hover:bg-white hover:text-stone-900 transition-colors">
+						Call Josh: { phone }
+					</a>
+				</div>
+			</div>
+		</section>
+	}
+}
+
+templ breedingTechCard(index int, tech BreedingTech) {
+	<div class="bg-white p-6 rounded-lg border border-stone-200 text-center hover:shadow-md transition-shadow">
+		<div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 text-green-700">
+			if index == 0 {
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+					<path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"></path>
+				</svg>
+			} else if index == 1 {
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+					<path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.97zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.97z"></path>
+				</svg>
+			} else if index == 2 {
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+					<path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"></path>
+				</svg>
+			} else {
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+					<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6"></path>
+				</svg>
+			}
+		</div>
+		<h3 class="font-bold mb-2">{ tech.Name }</h3>
+		<p class="text-sm text-stone-600">{ tech.Description }</p>
+	</div>
+}

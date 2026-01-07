@@ -1,0 +1,95 @@
+package admin
+
+import (
+	"database/sql"
+	"fmt"
+	"spaeth-farms/internal/database/sqlc"
+	"spaeth-farms/internal/meta"
+	"spaeth-farms/templates/layouts"
+)
+
+templ HomePage(heroSlides []sqlc.HeroSlide, featuredProducts []sqlc.Product) {
+	@layouts.Admin(meta.New("Home Page", "Manage home page content").WithNoIndex()) {
+		<div class="space-y-6">
+			<h1 class="text-3xl font-bold text-stone-900">Home Page Settings</h1>
+
+			<!-- Hero Carousel Section -->
+			<div class="bg-white rounded-lg shadow p-6">
+				<h2 class="text-xl font-semibold text-stone-900 mb-4">Hero Carousel</h2>
+
+				<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+					if len(heroSlides) == 0 {
+						<div class="col-span-full text-center text-stone-500 py-8">
+							No hero slides configured
+						</div>
+					} else {
+						for _, slide := range heroSlides {
+							<div class="relative group">
+								<img
+									src={ fmt.Sprintf("/static%s", slide.Image) }
+									alt={ homeGetAltText(slide.AltText) }
+									class="w-full h-32 object-cover rounded-lg"
+								/>
+								<div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center">
+									<span class="text-white text-sm">Order: { fmt.Sprintf("%d", homeGetSortOrder(slide.SortOrder)) }</span>
+								</div>
+								if slide.Active.Valid && slide.Active.Int64 == 0 {
+									<span class="absolute top-2 right-2 px-2 py-1 bg-red-500 text-white text-xs rounded">Inactive</span>
+								}
+							</div>
+						}
+					}
+				</div>
+
+				<p class="mt-4 text-sm text-stone-500">
+					To update hero slides, add images to the database or use the seed script.
+				</p>
+			</div>
+
+			<!-- Featured Products Section -->
+			<div class="bg-white rounded-lg shadow p-6">
+				<h2 class="text-xl font-semibold text-stone-900 mb-4">Featured Products</h2>
+
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+					if len(featuredProducts) == 0 {
+						<div class="col-span-full text-center text-stone-500 py-8">
+							No featured products. Mark products as "Featured" in the products section.
+						</div>
+					} else {
+						for _, product := range featuredProducts {
+							<div class="flex items-center space-x-4 p-4 border border-stone-200 rounded-lg">
+								if product.Image.Valid {
+									<img src={ fmt.Sprintf("/static%s", product.Image.String) } alt={ product.Name } class="w-16 h-16 object-cover rounded"/>
+								} else {
+									<div class="w-16 h-16 bg-stone-200 rounded"></div>
+								}
+								<div>
+									<p class="font-medium text-stone-900">{ product.Name }</p>
+									<p class="text-sm text-stone-500">{ fmt.Sprintf("$%.2f", float64(product.PriceCents)/100) }</p>
+								</div>
+							</div>
+						}
+					}
+				</div>
+
+				<a href="/admin/products" class="mt-4 inline-block text-green-600 hover:text-green-700 text-sm">
+					Manage Featured Products →
+				</a>
+			</div>
+		</div>
+	}
+}
+
+func homeGetAltText(alt sql.NullString) string {
+	if alt.Valid {
+		return alt.String
+	}
+	return "Hero slide"
+}
+
+func homeGetSortOrder(order sql.NullInt64) int64 {
+	if order.Valid {
+		return order.Int64
+	}
+	return 0
+}

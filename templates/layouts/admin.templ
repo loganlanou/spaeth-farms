@@ -1,0 +1,67 @@
+package layouts
+
+import "spaeth-farms/internal/meta"
+
+templ Admin(m meta.PageMeta) {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			<title>{ m.Title } | Admin | { meta.SiteNameFromCtx(ctx) }</title>
+			<meta name="robots" content="noindex, nofollow"/>
+			<link rel="icon" href="/static/images/favicon.ico"/>
+			<link rel="stylesheet" href="/static/css/output.css"/>
+			<script src="https://unpkg.com/htmx.org@2.0.4"></script>
+			<script defer src="https://unpkg.com/alpinejs@3.14.8/dist/cdn.min.js"></script>
+		</head>
+		<body class="bg-stone-100 min-h-screen">
+			<div class="flex">
+				@AdminSidebar()
+				<main class="flex-1 p-8">
+					{ children... }
+				</main>
+			</div>
+		</body>
+	</html>
+}
+
+templ AdminSidebar() {
+	<aside class="w-64 bg-stone-900 text-stone-300 min-h-screen sticky top-0">
+		<div class="p-4 border-b border-stone-700">
+			<a href="/" class="text-white font-semibold">{ meta.SiteNameFromCtx(ctx) }</a>
+			<p class="text-xs text-stone-500">Admin Panel</p>
+		</div>
+		<nav class="p-4 space-y-2">
+			<a href="/admin" class="block px-4 py-2 rounded hover:bg-stone-800 hover:text-white">
+				Dashboard
+			</a>
+			<a href="/admin/products" class="block px-4 py-2 rounded hover:bg-stone-800 hover:text-white">
+				Products
+			</a>
+			<a href="/admin/categories" class="block px-4 py-2 rounded hover:bg-stone-800 hover:text-white">
+				Categories
+			</a>
+			<a href="/admin/orders" class="block px-4 py-2 rounded hover:bg-stone-800 hover:text-white">
+				Orders
+			</a>
+			<a href="/admin/testimonials" class="block px-4 py-2 rounded hover:bg-stone-800 hover:text-white">
+				Testimonials
+			</a>
+			<a href="/admin/home-page" class="block px-4 py-2 rounded hover:bg-stone-800 hover:text-white">
+				Home Page
+			</a>
+			<a href="/admin/images" class="block px-4 py-2 rounded hover:bg-stone-800 hover:text-white">
+				Images
+			</a>
+			<a href="/admin/settings" class="block px-4 py-2 rounded hover:bg-stone-800 hover:text-white">
+				Settings
+			</a>
+		</nav>
+		<div class="absolute bottom-0 w-full p-4 border-t border-stone-700">
+			<a href="/" class="block text-center text-sm hover:text-white">
+				&larr; Back to Site
+			</a>
+		</div>
+	</aside>
+}

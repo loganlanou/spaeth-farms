@@ -1,0 +1,41 @@
+package components
+
+import (
+	"fmt"
+	"spaeth-farms/internal/database/sqlc"
+)
+
+templ HeroCarousel(slides []sqlc.HeroSlide) {
+	if len(slides) > 0 {
+		<div x-data="{ current: 0 }" x-init="setInterval(() => current = (current + 1) % $refs.slides.children.length, 5000)" class="relative w-full h-full">
+			<div x-ref="slides" class="relative w-full h-full">
+				for i, slide := range slides {
+					<div
+						x-show={ fmt.Sprintf("current === %d", i) }
+						x-transition:enter="transition ease-out duration-1000"
+						x-transition:enter-start="opacity-0"
+						x-transition:enter-end="opacity-100"
+						x-transition:leave="transition ease-in duration-1000"
+						x-transition:leave-start="opacity-100"
+						x-transition:leave-end="opacity-0"
+						class="absolute inset-0"
+					>
+						<img
+							src={ slide.Image }
+							if slide.AltText.Valid {
+								alt={ slide.AltText.String }
+							} else {
+								alt="Spaeth Farms"
+							}
+							class="w-full h-full object-cover"
+						/>
+					</div>
+				}
+			</div>
+		</div>
+	} else {
+		<div class="w-full h-full bg-stone-800">
+			<img src="/static/images/hero-cattle.jpg" alt="Spaeth Farms cattle" class="w-full h-full object-cover"/>
+		</div>
+	}
+}

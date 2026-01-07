@@ -1,0 +1,65 @@
+package pages
+
+import (
+	"spaeth-farms/internal/meta"
+	"spaeth-farms/templates/layouts"
+)
+
+templ SignIn(clerkPublishableKey string, redirect string) {
+	@layouts.Base(meta.New("Sign In", "Sign in to access your account").WithNoIndex()) {
+		<div class="min-h-[60vh] flex items-center justify-center">
+			<div class="max-w-md w-full mx-auto p-8">
+				<div class="text-center mb-8">
+					<h1 class="text-3xl font-bold text-stone-900 mb-2">Sign In</h1>
+					<p class="text-stone-600">Access your Spaeth Farms account</p>
+				</div>
+
+				if clerkPublishableKey != "" {
+					<!-- Clerk Sign-In Component -->
+					<div id="clerk-sign-in" class="min-h-[400px] flex items-center justify-center">
+						<div class="text-center text-stone-500">
+							<svg class="animate-spin h-8 w-8 mx-auto mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+								<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+								<path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+							</svg>
+							Loading...
+						</div>
+					</div>
+
+					<script src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@latest/dist/clerk.browser.js"></script>
+					<script>
+						const clerkPubKey = "{ clerkPublishableKey }";
+						const redirectURL = "{ redirect }";
+
+						window.Clerk.load().then(() => {
+							if (window.Clerk.user) {
+								// Already signed in, redirect
+								window.location.href = redirectURL;
+							} else {
+								window.Clerk.mountSignIn(document.getElementById('clerk-sign-in'), {
+									afterSignInUrl: redirectURL,
+									afterSignUpUrl: redirectURL,
+								});
+							}
+						});
+					</script>
+				} else {
+					<!-- Clerk not configured message -->
+					<div class="bg-amber-50 border border-amber-200 rounded-lg p-6 text-center">
+						<svg class="w-12 h-12 mx-auto text-amber-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+						</svg>
+						<h2 class="text-lg font-semibold text-amber-800 mb-2">Authentication Not Configured</h2>
+						<p class="text-amber-700">
+							Sign-in is not available in development mode.
+							Admin access is unrestricted.
+						</p>
+						<a href={ templ.SafeURL(redirect) } class="inline-block mt-4 px-6 py-2 bg-green-800 text-white rounded-lg hover:bg-green-700 transition-colors">
+							Continue
+						</a>
+					</div>
+				}
+			</div>
+		</div>
+	}
+}

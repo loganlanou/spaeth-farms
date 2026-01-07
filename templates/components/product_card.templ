@@ -1,0 +1,58 @@
+package components
+
+import (
+	"database/sql"
+	"fmt"
+	"strings"
+	"spaeth-farms/internal/database/sqlc"
+)
+
+templ ProductCard(product sqlc.Product) {
+	<div class="bg-white rounded-lg shadow-sm overflow-hidden group">
+		<a href={ templ.SafeURL(fmt.Sprintf("/products/%s", product.Slug)) } class="block">
+			<div class="aspect-square overflow-hidden bg-stone-100">
+				if product.Image.Valid {
+					<img src={ product.Image.String } alt={ product.Name } class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/>
+				} else {
+					<div class="w-full h-full flex items-center justify-center text-stone-400">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12">
+							<path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/>
+						</svg>
+					</div>
+				}
+			</div>
+		</a>
+		<div class="p-4">
+			<a href={ templ.SafeURL(fmt.Sprintf("/products/%s", product.Slug)) } class="block">
+				<h3 class="font-semibold text-stone-900 group-hover:text-green-700">{ product.Name }</h3>
+				if product.Weight.Valid {
+					<p class="text-sm text-stone-500 mt-1">{ product.Weight.String }</p>
+				}
+			</a>
+			<div class="flex items-center justify-between mt-3">
+				<span class="text-lg font-bold text-green-700">{ formatPrice(product.PriceCents) }</span>
+				<button
+					@click={ fmt.Sprintf("addToCart({slug: '%s', name: '%s', price: %d, image: '%s', weight: '%s'})", escapeJS(product.Slug), escapeJS(product.Name), product.PriceCents, escapeJS(nullString(product.Image)), escapeJS(nullString(product.Weight))) }
+					class="bg-green-700 text-white px-4 py-2 rounded text-sm font-medium hover:bg-green-800"
+				>
+					Add to Cart
+				</button>
+			</div>
+		</div>
+	</div>
+}
+
+func formatPrice(cents int64) string {
+	return fmt.Sprintf("$%.2f", float64(cents)/100)
+}
+
+func nullString(s sql.NullString) string {
+	if s.Valid {
+		return s.String
+	}
+	return ""
+}
+
+func escapeJS(s string) string {
+	return strings.ReplaceAll(s, "'", "\\'")
+}

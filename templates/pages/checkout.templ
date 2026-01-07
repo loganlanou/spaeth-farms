@@ -1,0 +1,422 @@
+package pages
+
+import (
+	"spaeth-farms/internal/meta"
+	"spaeth-farms/templates/layouts"
+)
+
+var usStates = []string{
+	"Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut",
+	"Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa",
+	"Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan",
+	"Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire",
+	"New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio",
+	"Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota",
+	"Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia",
+	"Wisconsin", "Wyoming",
+}
+
+templ Checkout(stripePublishableKey string) {
+	@layouts.Base(meta.New("Checkout", "Complete your order for premium Wisconsin beef from Spaeth Farms.")) {
+		<div x-data="checkoutPage()" x-init="loadCart()">
+			<!-- Empty Cart State -->
+			<template x-if="items.length === 0">
+				<div class="py-16 bg-stone-50">
+					<div class="max-w-7xl mx-auto px-4 text-center">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-20 h-20 mx-auto text-stone-300 mb-6">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"></path>
+						</svg>
+						<h1 class="text-3xl font-bold mb-4">Your Cart is Empty</h1>
+						<p class="text-stone-600 mb-6">Add some products before checking out.</p>
+						<a href="/products" class="inline-block bg-green-700 text-white px-6 py-3 rounded font-semibold hover:bg-green-800">
+							Shop Our Beef
+						</a>
+					</div>
+				</div>
+			</template>
+			<!-- Checkout Form -->
+			<template x-if="items.length > 0">
+				<div>
+					<!-- Header -->
+					<div class="bg-stone-900 text-white py-8">
+						<div class="max-w-7xl mx-auto px-4">
+							<h1 class="text-3xl font-bold">Checkout</h1>
+						</div>
+					</div>
+					<section class="py-16 bg-stone-50">
+						<div class="max-w-7xl mx-auto px-4">
+							<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+								<!-- Checkout Form -->
+								<div class="lg:col-span-2">
+									<form @submit.prevent="submitOrder" class="space-y-8">
+										<!-- Contact Information -->
+										<div class="bg-white p-6 rounded-lg shadow-sm border border-stone-200">
+											<h2 class="text-xl font-bold mb-6">Contact Information</h2>
+											<div class="space-y-4">
+												<div>
+													<label for="email" class="block text-sm font-medium mb-1">Email Address *</label>
+													<input
+														type="email"
+														id="email"
+														name="email"
+														required
+														x-model="formData.email"
+														class="w-full border border-stone-300 rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-500"
+														placeholder="you@example.com"
+													/>
+												</div>
+												<div>
+													<label for="phone" class="block text-sm font-medium mb-1">Phone Number *</label>
+													<input
+														type="tel"
+														id="phone"
+														name="phone"
+														required
+														x-model="formData.phone"
+														class="w-full border border-stone-300 rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-500"
+														placeholder="(555) 555-5555"
+													/>
+													<p class="text-xs text-stone-500 mt-1">In case we need to contact you about your order</p>
+												</div>
+											</div>
+										</div>
+										<!-- Shipping Address -->
+										<div class="bg-white p-6 rounded-lg shadow-sm border border-stone-200">
+											<h2 class="text-xl font-bold mb-6">Shipping Address</h2>
+											<div class="space-y-4">
+												<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+													<div>
+														<label for="firstName" class="block text-sm font-medium mb-1">First Name *</label>
+														<input
+															type="text"
+															id="firstName"
+															name="firstName"
+															required
+															x-model="formData.firstName"
+															class="w-full border border-stone-300 rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-500"
+														/>
+													</div>
+													<div>
+														<label for="lastName" class="block text-sm font-medium mb-1">Last Name *</label>
+														<input
+															type="text"
+															id="lastName"
+															name="lastName"
+															required
+															x-model="formData.lastName"
+															class="w-full border border-stone-300 rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-500"
+														/>
+													</div>
+												</div>
+												<div>
+													<label for="address" class="block text-sm font-medium mb-1">Street Address *</label>
+													<input
+														type="text"
+														id="address"
+														name="address"
+														required
+														x-model="formData.address"
+														class="w-full border border-stone-300 rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-500"
+														placeholder="123 Main Street"
+													/>
+												</div>
+												<div>
+													<label for="apartment" class="block text-sm font-medium mb-1">Apartment, Suite, etc.</label>
+													<input
+														type="text"
+														id="apartment"
+														name="apartment"
+														x-model="formData.apartment"
+														class="w-full border border-stone-300 rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-500"
+													/>
+												</div>
+												<div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+													<div class="col-span-2 sm:col-span-1">
+														<label for="city" class="block text-sm font-medium mb-1">City *</label>
+														<input
+															type="text"
+															id="city"
+															name="city"
+															required
+															x-model="formData.city"
+															class="w-full border border-stone-300 rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-500"
+														/>
+													</div>
+													<div>
+														<label for="state" class="block text-sm font-medium mb-1">State *</label>
+														<select
+															id="state"
+															name="state"
+															required
+															x-model="formData.state"
+															class="w-full border border-stone-300 rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
+														>
+															<option value="">Select</option>
+															for _, state := range usStates {
+																<option value={ state }>{ state }</option>
+															}
+														</select>
+													</div>
+													<div>
+														<label for="zipCode" class="block text-sm font-medium mb-1">ZIP Code *</label>
+														<input
+															type="text"
+															id="zipCode"
+															name="zipCode"
+															required
+															x-model="formData.zipCode"
+															class="w-full border border-stone-300 rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-500"
+															placeholder="12345"
+														/>
+													</div>
+												</div>
+												<div>
+													<label for="deliveryInstructions" class="block text-sm font-medium mb-1">Delivery Instructions</label>
+													<textarea
+														id="deliveryInstructions"
+														name="deliveryInstructions"
+														rows="3"
+														x-model="formData.deliveryInstructions"
+														class="w-full border border-stone-300 rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-500"
+														placeholder="Leave at door, ring doorbell, etc."
+													></textarea>
+												</div>
+											</div>
+										</div>
+										<!-- Payment Notice -->
+										<div class="bg-amber-50 border border-amber-200 p-6 rounded-lg">
+											<div class="flex items-start gap-4">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-amber-600 flex-shrink-0 mt-0.5">
+													<path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"></path>
+												</svg>
+												<div>
+													<h3 class="font-semibold text-amber-800">Secure Payment with Stripe</h3>
+													<p class="text-sm text-amber-700 mt-1">
+														You'll be redirected to Stripe's secure checkout to complete your payment.
+														We accept all major credit cards.
+													</p>
+												</div>
+											</div>
+										</div>
+										<!-- Submit -->
+										<button
+											type="submit"
+											:disabled="isSubmitting"
+											class="w-full bg-green-700 text-white py-4 rounded-lg text-lg font-semibold hover:bg-green-800 disabled:opacity-50 disabled:cursor-not-allowed"
+										>
+											<span x-show="!isSubmitting" x-text="'Proceed to Payment - $' + total.toFixed(2)"></span>
+											<span x-show="isSubmitting" class="flex items-center justify-center gap-2">
+												<svg class="animate-spin h-5 w-5" viewBox="0 0 24 24">
+													<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"></circle>
+													<path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+												</svg>
+												Processing...
+											</span>
+										</button>
+									</form>
+								</div>
+								<!-- Order Summary -->
+								<div class="lg:col-span-1">
+									<div class="bg-white p-6 rounded-lg shadow-sm border border-stone-200 sticky top-24">
+										<h2 class="text-xl font-bold mb-6">Order Summary</h2>
+										<!-- Items -->
+										<ul class="divide-y divide-stone-200 mb-6">
+											<template x-for="item in items" :key="item.slug">
+												<li class="py-4 flex gap-4">
+													<div class="w-16 h-16 bg-stone-100 rounded overflow-hidden flex-shrink-0">
+														<img :src="item.image" :alt="item.name" class="w-full h-full object-cover"/>
+													</div>
+													<div class="flex-1 min-w-0">
+														<h3 class="font-medium text-sm truncate" x-text="item.name"></h3>
+														<p class="text-xs text-stone-500">Qty: <span x-text="item.qty"></span></p>
+														<p class="font-semibold text-sm mt-1" x-text="'$' + ((item.price / 100) * item.qty).toFixed(2)"></p>
+													</div>
+												</li>
+											</template>
+										</ul>
+										<!-- Totals -->
+										<div class="space-y-3 text-sm">
+											<div class="flex justify-between">
+												<span class="text-stone-500">Subtotal</span>
+												<span x-text="'$' + subtotal.toFixed(2)"></span>
+											</div>
+											<div class="flex justify-between">
+												<span class="text-stone-500">Shipping</span>
+												<span :class="shippingCost === 0 ? 'text-green-600 font-medium' : ''" x-text="shippingCost === 0 ? 'FREE' : '$' + shippingCost.toFixed(2)"></span>
+											</div>
+											<div class="flex justify-between">
+												<span class="text-stone-500">Estimated Tax</span>
+												<span x-text="'$' + tax.toFixed(2)"></span>
+											</div>
+											<div class="border-t border-stone-200 pt-3 flex justify-between text-lg font-bold">
+												<span>Total</span>
+												<span x-text="'$' + total.toFixed(2)"></span>
+											</div>
+										</div>
+										<!-- Shipping Info -->
+										<div class="mt-6 pt-6 border-t border-stone-200">
+											<div class="flex items-center gap-2 text-green-700 mb-2">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+													<path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"></path>
+												</svg>
+												<span class="font-semibold text-sm">Shipping Details</span>
+											</div>
+											<p class="text-xs text-stone-500">
+												Orders are packed with dry ice in insulated coolers and shipped via expedited delivery (2-3 business days). Your beef will arrive frozen and ready to store.
+											</p>
+										</div>
+										<!-- Guarantee -->
+										<div class="mt-4 p-4 bg-green-50 rounded-lg">
+											<div class="flex items-center gap-2 text-green-700 mb-1">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+													<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"></path>
+												</svg>
+												<span class="font-semibold text-sm">100% Satisfaction Guarantee</span>
+											</div>
+											<p class="text-xs text-green-700">
+												If you're not completely satisfied with your order, contact us and we'll make it right.
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+			</template>
+		</div>
+		<script>
+			function checkoutPage() {
+				return {
+					items: [],
+					formData: {
+						email: '',
+						firstName: '',
+						lastName: '',
+						phone: '',
+						address: '',
+						apartment: '',
+						city: '',
+						state: '',
+						zipCode: '',
+						deliveryInstructions: ''
+					},
+					isSubmitting: false,
+
+					loadCart() {
+						this.items = JSON.parse(localStorage.getItem('cart') || '[]');
+					},
+
+					get subtotal() {
+						return this.items.reduce((sum, item) => sum + (item.price / 100) * item.qty, 0);
+					},
+
+					get shippingCost() {
+						return this.subtotal >= 199 ? 0 : 29.99;
+					},
+
+					get tax() {
+						return this.subtotal * 0.055;
+					},
+
+					get total() {
+						return this.subtotal + this.shippingCost + this.tax;
+					},
+
+					async submitOrder() {
+						this.isSubmitting = true;
+
+						try {
+							const response = await fetch('/api/checkout/session', {
+								method: 'POST',
+								headers: {
+									'Content-Type': 'application/json',
+								},
+								body: JSON.stringify({
+									items: this.items,
+									customer: this.formData
+								})
+							});
+
+							const data = await response.json();
+
+							if (data.url) {
+								window.location.href = data.url;
+							} else {
+								alert('Error creating checkout session. Please try again.');
+								this.isSubmitting = false;
+							}
+						} catch (error) {
+							console.error('Checkout error:', error);
+							alert('Error processing checkout. Please try again.');
+							this.isSubmitting = false;
+						}
+					}
+				};
+			}
+		</script>
+	}
+}
+
+templ CheckoutSuccess() {
+	@layouts.Base(meta.New("Order Confirmed", "Thank you for your order from Spaeth Farms.")) {
+		<div class="py-16 bg-stone-50">
+			<div class="max-w-2xl mx-auto px-4 text-center">
+				<div class="bg-white p-12 rounded-lg shadow-sm border border-stone-200">
+					<div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-10 h-10 text-green-600">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path>
+						</svg>
+					</div>
+					<h1 class="text-3xl font-bold mb-4">Order Confirmed!</h1>
+					<p class="text-stone-600 mb-6">
+						Thank you for your order! You'll receive a confirmation email shortly with tracking information once your order ships.
+					</p>
+					<div class="bg-stone-50 p-6 rounded-lg mb-8">
+						<p class="text-sm text-stone-600 mb-2">Your order will be packed with care and shipped with dry ice to ensure it arrives frozen and fresh.</p>
+						<p class="font-semibold text-green-700">Expected delivery: 2-3 business days</p>
+					</div>
+					<div class="flex flex-col sm:flex-row gap-4 justify-center">
+						<a href="/products" class="bg-green-700 text-white px-6 py-3 rounded font-semibold hover:bg-green-800">
+							Continue Shopping
+						</a>
+						<a href="/" class="border-2 border-stone-900 text-stone-900 px-6 py-3 rounded font-semibold hover:bg-stone-900 hover:text-white">
+							Return Home
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			localStorage.removeItem('cart');
+		</script>
+	}
+}
+
+templ CheckoutCancel() {
+	@layouts.Base(meta.New("Checkout Cancelled", "Your checkout was cancelled.")) {
+		<div class="py-16 bg-stone-50">
+			<div class="max-w-2xl mx-auto px-4 text-center">
+				<div class="bg-white p-12 rounded-lg shadow-sm border border-stone-200">
+					<div class="w-20 h-20 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-6">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-10 h-10 text-amber-600">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"></path>
+						</svg>
+					</div>
+					<h1 class="text-3xl font-bold mb-4">Checkout Cancelled</h1>
+					<p class="text-stone-600 mb-6">
+						Your checkout was cancelled. Don't worry - your cart items are still saved.
+					</p>
+					<div class="flex flex-col sm:flex-row gap-4 justify-center">
+						<a href="/checkout" class="bg-green-700 text-white px-6 py-3 rounded font-semibold hover:bg-green-800">
+							Try Again
+						</a>
+						<a href="/products" class="border-2 border-stone-900 text-stone-900 px-6 py-3 rounded font-semibold hover:bg-stone-900 hover:text-white">
+							Continue Shopping
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	}
+}

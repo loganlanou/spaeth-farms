@@ -39,3 +39,25 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Go
+spaeth-farms
+*.exe
+tmp/
+*.log
+
+# Environment (never commit secrets)
+.envrc
+
+# Generated files (can be regenerated)
+*_templ.go
+internal/database/sqlc/
+
+# SQLite database
+data/*.db
+data/*.db-journal
+data/*.db-wal
+data/*.db-shm
+
+# Tailwind output (generated)
+static/css/output.css

@@ -1,0 +1,177 @@
+package pages
+
+import (
+	"spaeth-farms/internal/meta"
+	"spaeth-farms/templates/layouts"
+)
+
+templ About() {
+	@layouts.Base(meta.New("Our Story", "Learn about the Spaeth family and our commitment to raising premium Hereford cattle in Wisconsin.")) {
+		<section class="relative h-96 bg-stone-900">
+			<div class="absolute inset-0 bg-black/50"></div>
+			<img src="/static/images/farm-family.jpg" alt="Spaeth Family" class="absolute inset-0 w-full h-full object-cover"/>
+			<div class="relative z-10 h-full flex items-center justify-center text-center text-white">
+				<div>
+					<h1 class="text-4xl md:text-5xl font-bold mb-4">Our Story</h1>
+					<p class="text-xl text-stone-200">Generations of Wisconsin farming tradition</p>
+				</div>
+			</div>
+		</section>
+		<section class="py-16">
+			<div class="max-w-4xl mx-auto px-4 text-center">
+				<p class="text-lg text-stone-600 leading-relaxed">
+					For generations, the Spaeth family has been raising cattle on the rolling hills of Wisconsin. What started as a small family operation has grown into a trusted source of premium beef for families across the nation.
+				</p>
+			</div>
+		</section>
+		<section class="py-16 bg-stone-50">
+			<div class="max-w-7xl mx-auto px-4">
+				<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+					<div>
+						<h2 class="text-3xl font-bold text-stone-900 mb-6">Rooted in Tradition, Focused on Quality</h2>
+						<p class="text-stone-600 mb-4 leading-relaxed">
+							At Spaeth Farms, we believe that the best beef comes from cattle raised with care, respect, and time-honored practices. Our family has been dedicated to this philosophy for generations.
+						</p>
+						<p class="text-stone-600 mb-4 leading-relaxed">
+							Every animal on our farm is treated with the utmost respect. We believe that healthy, happy cattle produce the best beef, and we never compromise on animal welfare or quality.
+						</p>
+						<p class="text-stone-600 leading-relaxed">
+							When you choose Spaeth Farms, you are not just buying beef - you are supporting a family farm that takes pride in every cut we produce.
+						</p>
+					</div>
+					<div class="rounded-lg overflow-hidden shadow-lg">
+						<img src="/static/images/farm-family.jpg" alt="The Spaeth family on the farm" class="w-full h-full object-cover"/>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="py-16">
+			<div class="max-w-7xl mx-auto px-4">
+				<div class="text-center mb-12">
+					<h2 class="text-3xl font-bold text-stone-900 mb-4">Our Values</h2>
+					<p class="text-stone-600">These principles guide everything we do at Spaeth Farms</p>
+				</div>
+				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+					<div class="bg-white p-6 rounded-lg shadow-sm border border-stone-100">
+						<div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-green-700">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/>
+							</svg>
+						</div>
+						<h3 class="font-semibold text-stone-900 mb-2">Animal Welfare</h3>
+						<p class="text-stone-600 text-sm">Our cattle are raised humanely on open pastures with access to fresh water, quality feed, and veterinary care.</p>
+					</div>
+					<div class="bg-white p-6 rounded-lg shadow-sm border border-stone-100">
+						<div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-green-700">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M12.75 3.03v.568c0 .334.148.65.405.864l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 0 1-1.161.886l-.143.048a1.107 1.107 0 0 0-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 0 1-1.652.928l-.679-.906a1.125 1.125 0 0 0-1.906.172L4.5 15.75l-.612.153M12.75 3.031a9 9 0 1 0 6.712 14.84"/>
+							</svg>
+						</div>
+						<h3 class="font-semibold text-stone-900 mb-2">Sustainable Practices</h3>
+						<p class="text-stone-600 text-sm">We practice rotational grazing to maintain healthy pastures and minimize our environmental impact.</p>
+					</div>
+					<div class="bg-white p-6 rounded-lg shadow-sm border border-stone-100">
+						<div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-green-700">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"/>
+							</svg>
+						</div>
+						<h3 class="font-semibold text-stone-900 mb-2">Uncompromising Quality</h3>
+						<p class="text-stone-600 text-sm">We hand-select every animal and dry-age our steaks for optimal flavor. Our beef is USDA inspected.</p>
+					</div>
+					<div class="bg-white p-6 rounded-lg shadow-sm border border-stone-100">
+						<div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-green-700">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z"/>
+							</svg>
+						</div>
+						<h3 class="font-semibold text-stone-900 mb-2">Community First</h3>
+						<p class="text-stone-600 text-sm">We support fellow farmers, local businesses, and agricultural education programs.</p>
+					</div>
+					<div class="bg-white p-6 rounded-lg shadow-sm border border-stone-100">
+						<div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-green-700">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"/>
+								<path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+							</svg>
+						</div>
+						<h3 class="font-semibold text-stone-900 mb-2">Transparency</h3>
+						<p class="text-stone-600 text-sm">We believe you should know where your food comes from. We welcome questions and visitors.</p>
+					</div>
+					<div class="bg-white p-6 rounded-lg shadow-sm border border-stone-100">
+						<div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-green-700">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205 3 1m1.5.5-1.5-.5M6.75 7.364V3h-3v18m3-13.636 10.5-3.819"/>
+							</svg>
+						</div>
+						<h3 class="font-semibold text-stone-900 mb-2">Family Legacy</h3>
+						<p class="text-stone-600 text-sm">This farm is our legacy. We are committed to leaving the land better for future generations.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="py-16 bg-stone-50">
+			<div class="max-w-7xl mx-auto px-4">
+				<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+					<div>
+						<p class="text-green-700 font-semibold mb-2">MEET THE FARMER</p>
+						<h2 class="text-3xl font-bold text-stone-900 mb-6">Josh Spaeth</h2>
+						<p class="text-stone-600 mb-4 leading-relaxed">
+							Josh grew up on this farm and has been involved in cattle raising since he could walk. After studying agricultural science, he returned home to continue the family tradition with a focus on sustainable practices and premium quality.
+						</p>
+						<blockquote class="border-l-4 border-green-700 pl-4 my-6 italic text-stone-600">
+							"Every day, I walk the pastures and check on our herd. I know each animal, and I take personal responsibility for the quality of beef that leaves our farm. When you order from Spaeth Farms, you are getting beef I am proud to put my name on."
+						</blockquote>
+						<a href="tel:715-313-0075" class="inline-flex items-center gap-2 text-green-700 font-semibold hover:text-green-800">
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/>
+							</svg>
+							(715) 313-0075
+						</a>
+					</div>
+					<div class="rounded-lg overflow-hidden shadow-lg">
+						<img src="/static/images/josh-portrait.jpg" alt="Josh Spaeth, owner of Spaeth Farms" class="w-full h-full object-cover"/>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="py-16 bg-green-800 text-white">
+			<div class="max-w-7xl mx-auto px-4">
+				<div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+					<div>
+						<p class="text-4xl md:text-5xl font-bold mb-2">50+</p>
+						<p class="text-green-200">Years of Farming</p>
+					</div>
+					<div>
+						<p class="text-4xl md:text-5xl font-bold mb-2">200+</p>
+						<p class="text-green-200">Acres of Pasture</p>
+					</div>
+					<div>
+						<p class="text-4xl md:text-5xl font-bold mb-2">5,000+</p>
+						<p class="text-green-200">Families Served</p>
+					</div>
+					<div>
+						<p class="text-4xl md:text-5xl font-bold mb-2">100%</p>
+						<p class="text-green-200">Satisfaction Rate</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="py-16">
+			<div class="max-w-4xl mx-auto px-4 text-center">
+				<h2 class="text-3xl font-bold text-stone-900 mb-4">Ready to Taste the Spaeth Farms Difference?</h2>
+				<p class="text-lg text-stone-600 mb-8">
+					Experience premium, farm-raised beef delivered directly to your door. Your purchase supports our family farm and sustainable agriculture.
+				</p>
+				<div class="flex flex-col sm:flex-row gap-4 justify-center">
+					<a href="/products" class="inline-block bg-green-700 text-white px-8 py-3 rounded font-semibold hover:bg-green-800">
+						Shop Our Beef
+					</a>
+					<a href="/contact" class="inline-block border-2 border-green-700 text-green-700 px-8 py-3 rounded font-semibold hover:bg-green-50">
+						Contact Us
+					</a>
+				</div>
+			</div>
+		</section>
+	}
+}
